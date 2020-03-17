@@ -2,14 +2,8 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Logout from "../auth/logout";
-import {
-  Navbar,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  Container,
-  NavLink
-} from "reactstrap";
+import { Link } from "react-router-dom";
+import { Navbar, Nav, NavItem, Container } from "reactstrap";
 
 class AppNavbar extends Component {
   state = {
@@ -43,14 +37,14 @@ class AppNavbar extends Component {
     const guestLinks = (
       <Fragment>
         <NavItem className="m-2">
-          <NavLink onClick={this.toggle} href="/register">
-            Register
-          </NavLink>
+          {/* <NavLink onClick={this.toggle}> */}
+          <Link to="/register">Register</Link>
+          {/* </NavLink> */}
         </NavItem>
         <NavItem className="m-2">
-          <NavLink onClick={this.toggle} href="/login">
-            Login
-          </NavLink>
+          {/* <NavLink onClick={this.toggle}> */}
+          <Link to="/login">Login</Link>
+          {/* </NavLink> */}
         </NavItem>
       </Fragment>
     );
@@ -58,7 +52,7 @@ class AppNavbar extends Component {
       <div>
         <Navbar color="dark" dark expands="sm" className="mb-5">
           <Container>
-            <NavbarBrand href="/">Home</NavbarBrand>
+            <Link to="/">Home</Link>
             {/* <NavbarToggler onClick={this.toggle} /> */}
             {/* <Collapse isOpen={this.state.isOpen} navbar> */}
             <Nav className="ml-auto" navbar>
