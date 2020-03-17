@@ -37,14 +37,10 @@ class AppNavbar extends Component {
     const guestLinks = (
       <Fragment>
         <NavItem className="m-2">
-          {/* <NavLink onClick={this.toggle}> */}
           <Link to="/register">Register</Link>
-          {/* </NavLink> */}
         </NavItem>
         <NavItem className="m-2">
-          {/* <NavLink onClick={this.toggle}> */}
           <Link to="/login">Login</Link>
-          {/* </NavLink> */}
         </NavItem>
       </Fragment>
     );
@@ -53,23 +49,15 @@ class AppNavbar extends Component {
         <Navbar color="dark" dark expands="sm" className="mb-5">
           <Container>
             <Link to="/">Home</Link>
-            {/* <NavbarToggler onClick={this.toggle} /> */}
-            {/* <Collapse isOpen={this.state.isOpen} navbar> */}
             <Nav className="ml-auto" navbar>
               {isAuthenticated ? authLinks : guestLinks}
             </Nav>
-            {/* </Collapse> */}
           </Container>
         </Navbar>
       </div>
     );
   }
 }
-
-// Logout.propTypes = {
-//   logoutUser: PropTypes.func.isRequired,
-//   auth: PropTypes.object.isRequired
-// };
 
 const mapStateoProps = (state) => ({
   auth: state.auth

@@ -9,15 +9,9 @@ class Logout extends Component {
     this.props.logoutUser();
   };
   render() {
-    // const { user } = this.props.auth;
     return (
       <div>
-        <NavLink
-          onClick={this.onLogoutClick}
-          //   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-        >
-          Logout
-        </NavLink>
+        <NavLink onClick={this.onLogoutClick}>Logout</NavLink>
       </div>
     );
   }
