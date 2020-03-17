@@ -1,27 +1,87 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-class Navbar extends Component {
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import Logout from "../auth/logout";
+import { logoutUser } from "../../actions/authActions";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  Container,
+  NavLink
+} from "reactstrap";
+
+class AppNavbar extends Component {
+  state = {
+    isOpen: false
+  };
+
+  static propTypes = {
+    auth: PropTypes.object.isRequired
+  };
+
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  };
+
   render() {
+    const { isAuthenticated, user } = this.props.auth;
+    const authLinks = (
+      <Fragment>
+        <NavItem>
+          <span className="navbar-text mr-3">
+            <strong>{user ? "Welcome " + user.name : ""}</strong>
+          </span>
+        </NavItem>
+        <NavItem onClick={this.toggle}>
+          <Logout></Logout>
+        </NavItem>
+      </Fragment>
+    );
+    const guestLinks = (
+      <Fragment>
+        <NavItem className="m-2">
+          <NavLink onClick={this.toggle} href="/register">
+            Register
+          </NavLink>
+        </NavItem>
+        <NavItem className="m-2">
+          <NavLink onClick={this.toggle} href="/login">
+            Login
+          </NavLink>
+        </NavItem>
+      </Fragment>
+    );
     return (
-      //   <Router>
-      <div className="navbar-fixed">
-        <nav className="z-depth-0">
-          <div className="nav-wrapper white">
-            <Link
-              to="/"
-              style={{
-                fontFamily: "monospace"
-              }}
-              className="col s5 brand-logo center black-text"
-            >
-              <i className="material-icons">code</i>
-              MERN
-            </Link>
-          </div>
-        </nav>
+      <div>
+        <Navbar color="dark" dark expands="sm" className="mb-5">
+          <Container>
+            <NavbarBrand href="/">Home</NavbarBrand>
+            {/* <NavbarToggler onClick={this.toggle} /> */}
+            {/* <Collapse isOpen={this.state.isOpen} navbar> */}
+            <Nav className="ml-auto" navbar>
+              {isAuthenticated ? authLinks : guestLinks}
+            </Nav>
+            {/* </Collapse> */}
+          </Container>
+        </Navbar>
       </div>
-      //   </Router>
     );
   }
 }
-export default Navbar;
+
+// Logout.propTypes = {
+//   logoutUser: PropTypes.func.isRequired,
+//   auth: PropTypes.object.isRequired
+// };
+
+const mapStateoProps = (state) => ({
+  auth: state.auth
+});
+export default connect(mapStateoProps, null)(AppNavbar);
