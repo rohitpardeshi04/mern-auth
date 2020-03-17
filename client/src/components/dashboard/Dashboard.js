@@ -25,15 +25,14 @@ class Dashboard extends Component {
         </button> */}
 
         <div style={{ height: "75vh" }} className="container valign-wrapper">
-          <div className="row">
-            <div className="col s12 center-align">
-              <h4>
-                {/* <b>Hey there,</b> {user.name.split(" ")[0]} */}
-                <p className="flow-text grey-text text-darken-1">
-                  You are logged into a full-stack{" "}
-                  <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-                </p>
-              </h4>
+          <div className="row" style={{ width: "100%" }}>
+            <div className="col-12 text-center">
+              <p>
+                Hello...
+                <br />
+                You are logged in...
+                <br /> This is the dashboard.
+              </p>
             </div>
           </div>
         </div>
